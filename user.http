@@ -1,0 +1,44 @@
+
+### User Api routes
+
+GET http://localhost:4000/user-api/users
+
+###
+
+POST  http://localhost:4000/user-api/user
+Content-Type: application/json
+
+{
+    "userType" : "User",
+    "userName": "Aryashu",
+    "password": "Aryashu",
+    "email" : "aryashu448@gmail.com"
+}
+
+###
+
+POST  http://localhost:4000/user-api/login
+Content-Type: application/json
+
+{
+    "userType" : "User",
+    "userName": "Aryashu",
+    "password": "Aryashu"
+    
+}
+
+### adding comments 
+POST http://localhost:4000/user-api/comment/1710083190
+Content-Type: application/json
+
+{
+    
+    "username":"Aryashu",
+    "comment":"Excellent Work!!"
+}
+
+###
+GET http://localhost:4000/user-api/articles
+
+
+GET http://localhost:4000/admin-api/admins
