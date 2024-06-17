@@ -3,6 +3,8 @@ import { useForm } from "react-hook-form";
 import { NavLink, useNavigate } from "react-router-dom";
 import { UserContext } from "../Context/UserContext";
 import axios from "axios";
+import {useDispatch} from 'react-redux'
+import { userAuthorLoginThunk } from "../../redux/slices/userauthorslice";
 
 
 function Login() {
@@ -17,29 +19,29 @@ function Login() {
   } = useForm();
   let navigate = useNavigate();
 
-
+let dispatch = useDispatch()
   let [err,setErr] = useState('')
 
-  async function handleFormSubmit(User) {
+ function handleFormSubmit(User) {
     console.log("User logged in ");
     //console.log(User)
-    let res;
-    if(User.userType === 'User'){
-      res = await axios.post('http://localhost:4000/user-api/login',User)
-    }
-    else if(User.userType === 'Author'){
-      res = await axios.post('http://localhost:4000/author-api/login',User)
-    }
-    if (res.data.message === "Login Succesfull"){
-    Userlogin(User)
-    navigate('/Home')
-    }
-    else{
-      setErr(res.data.message)
-      console.log(res.data.message)
-    }
-    
-  }
+    dispatch(userAuthorLoginThunk(User))
+    // let res;
+    // if(User.userType === 'User'){
+    //   res = await axios.post('http://localhost:4000/user-api/login',User)
+    // }
+    // else if(User.userType === 'Author'){
+    //   res = await axios.post('http://localhost:4000/author-api/login',User)
+    // }
+    // if (res.data.message === "Login Succesfull"){
+    // Userlogin(User)
+    // // navigate('/Home')
+    // }
+    // else{
+    //   setErr(res.data.message)
+    //   console.log(res.data.message)
+    // }
+ }
   return (
     <div className="m-6 text-white">
       <a className="text-4xl p-4 m-auto">WELCOME BACK!!!! </a>
